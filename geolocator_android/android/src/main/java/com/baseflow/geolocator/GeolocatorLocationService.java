@@ -54,7 +54,7 @@ public class GeolocatorLocationService extends Service {
 
   @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
-    return START_STICKY;
+    return START_NOT_STICKY;
   }
 
   @Nullable
@@ -85,12 +85,14 @@ public class GeolocatorLocationService extends Service {
 
   @Override
   public void onTaskRemoved(Intent rootIntent) {
-    Log.d(TAG, "Task removed - stopping foreground service and notification.");
-    if (isForeground) {
-      stopForeground(true);
-    }
-    stopSelf();
-    super.onTaskRemoved(rootIntent);
+      Log.d(TAG, "Task removed - forcing stop of foreground service and resetting counters.");
+      connectedEngines = 0;
+      listenerCount = 0;
+      if (isForeground) {
+          stopForeground(true);
+      }
+      stopSelf();
+      super.onTaskRemoved(rootIntent);
   }
 
   public boolean canStopLocationService(boolean cancellationRequested) {
