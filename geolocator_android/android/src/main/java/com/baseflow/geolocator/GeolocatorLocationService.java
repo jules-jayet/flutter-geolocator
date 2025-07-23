@@ -83,18 +83,6 @@ public class GeolocatorLocationService extends Service {
     super.onDestroy();
   }
 
-  @Override
-  public void onTaskRemoved(Intent rootIntent) {
-      Log.d(TAG, "Task removed - forcing stop of foreground service and resetting counters.");
-      connectedEngines = 0;
-      listenerCount = 0;
-      if (isForeground) {
-          stopForeground(true);
-      }
-      stopSelf();
-      super.onTaskRemoved(rootIntent);
-  }
-
   public boolean canStopLocationService(boolean cancellationRequested) {
     if (cancellationRequested) {
       return listenerCount == 1;
