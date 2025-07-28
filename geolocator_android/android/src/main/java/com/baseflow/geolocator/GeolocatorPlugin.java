@@ -197,13 +197,6 @@ public class GeolocatorPlugin implements FlutterPlugin, ActivityAware {
             foregroundLocationService.setActivity(null);
         } else {
             Log.d(TAG, "Force stopping service via context.stopService() todo...");
-            /*
-            if (pluginBinding != null) {
-                Context context = pluginBinding.getApplicationContext();
-                Intent stopIntent = new Intent(context, GeolocatorLocationService.class);
-                context.stopService(stopIntent);
-            }
-            */
         }
     } catch (Exception e) {
         Log.e(TAG, "Error force stopping service in dispose()", e);
