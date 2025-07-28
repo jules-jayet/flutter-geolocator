@@ -170,7 +170,7 @@ public class GeolocatorPlugin implements FlutterPlugin, ActivityAware {
   }
 
   private void dispose() {
-    Log.d(TAG, "Disposing Geolocator services");
+    Log.d(TAG, "Disposing Geolocator services - from fork");
     if (methodCallHandler != null) {
       methodCallHandler.stopListening();
       methodCallHandler.setActivity(null);
